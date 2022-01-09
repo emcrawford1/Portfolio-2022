@@ -1,0 +1,21 @@
+body {
+  background-image: url("./assets/images/Logo.png");
+  background-color: white;
+}
+
+.container-logo {
+  display: flex;
+  justify-content: center;
+}
+
+.container-explore {
+  display: flex;
+  justify-content: center;
+}
+
+.container-explore > img:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+
