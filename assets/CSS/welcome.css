@@ -13,7 +13,7 @@ body {
   justify-content: center;
 }
 
-.container-explore > img:hover {
+.container-explore > a:hover {
   transform: scale(1.05);
   cursor: pointer;
 }
