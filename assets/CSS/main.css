@@ -1,37 +1,30 @@
 .nav-bar {
   display: flex;
   justify-content: center;
-  color: #3399FF;
+  color: white;
   position: relative;
   text-align: center;
-}
-
-.nav-container {
-  position: relative;
-  text-align: center;
-  margin: 10px
-}
-
-.projects {
-  position: absolute;
-  top: 25px;
-  left: 23px;
+  height: fit-content;
+  width: inherit;
+  background-color: #3399FF;
 }
 
 .nav-items {
   font-family: 'Open Sans', sans-serif;
   font-size: 25px;
-  margin: 25px;
+  margin: 7px;
+  flex-direction: row;
 
+}
+
+.logo { 
+  position: absolute;
+  left: 2px;
 }
 
 .nav-items:hover {
   transform: scale(1.02);
   cursor: pointer;
-}
-
-.about-me { 
-  left: 14px
 }
 
 .main-container {
