@@ -1,5 +1,10 @@
-//Global position variable for cycling through projects
+//Variables
 let position = 0;
+let hoverPause = false;
+let hoverEnter = false;
+let timeoutID1 = null;
+let timeoutID2 = null;
+const animationDuration = 1000; //seconds
 const mainContainer = document.getElementById("main-container");
 
 
@@ -43,20 +48,43 @@ const projects = [
   }
 ];
 
-//Add window event listener for window resize
-window.addEventListener('resize', () => console.log(window.innerWidth, window.innerHeight))
+//Create and return an array of <img> elements for DOM
+const createImage = (portfolio, index) => {
+  const imageList = [];
+  for(let i = (index); i < index + portfolio.length; i++) {
+ 
+    //Add informational node to image array
+    if(i % portfolio.length === Math.floor((index + portfolio.length/2) % portfolio.length)) {
 
-//Create image nodes for DOM
-const createImage = (...args) => {
-  const imageList = args.map(position => {
-      let imgNode = document.createElement('img');
-      imgNode.src = projects[position].pic;
-      imgNode.alt = projects[position].name;  
-      return imgNode;
-  })
+      const infNode = document.createElement('div');
+      infNode.innerHTML = portfolio[i % portfolio.length].description;
+      infNode.classList.add("information");
+      const header = document.createElement('h2');
+      const headerText = document.createTextNode(projects[i % projects.length].name);
+      header.appendChild(headerText);
+      infNode.appendChild(header);
+
+      const focusImg = document.createElement('img');
+      focusImg.src = portfolio[i % portfolio.length].pic;
+      focusImg.alt = portfolio[i % portfolio.length].name
+      focusImg.classList.add("focus-image");
+     
+      imageList.push(infNode);
+      imageList.push(focusImg)
+    }
+
+    else {
+      const imgNode = document.createElement('img');
+      imgNode.src = portfolio[i % portfolio.length].pic;
+      imgNode.alt = portfolio[i % portfolio.length].name;
+      imgNode.classList.add("side-images");
+      imageList.push(imgNode);
+    }
+  }
   return imageList;
 }
 
+//Remove all <img> elements so that they can be replaced
 const resetContainer = () => {
   const removeNode = document.getElementById('img-container');
   mainContainer.removeChild(removeNode);
@@ -73,27 +101,59 @@ const resetContainer = () => {
 
 //Carousel cycling function
 const carouselCycle = (incrementor) => {
+  
   const imgContainer = resetContainer();
-  const infoNode = document.getElementById('information');
-  const titleNode = document.createElement('h3');
 
-  let leftPosition = position % projects.length;
-  let centerPosition = (position + incrementor) % projects.length;
-  let rightPosition = (position + (incrementor * 2)) % projects.length;
-
-  const imageNodes = createImage(leftPosition, centerPosition, rightPosition);
+  const imageNodes = createImage(projects, position)
 
   imageNodes.forEach(node => imgContainer.appendChild(node));
 
-  titleNode.innerHTML = projects[leftPosition].name;
-  infoNode.appendChild(titleNode);
-  console.log(titleNode);
-  infoNode.innerHTML = projects[leftPosition].description;
+  //Sets the hoverPause variable to false so that the hoverEvent can safely pause the carousel while not in the 
+  //middle of an animation
+  timeoutID1 = setTimeout(() => hoverPause = true, 2000)
+  timeoutID2 = setTimeout(() => hoverPause = false, 3000)
+
  position = position + incrementor;
+
+ //Ensure that a postive increment and a negative decrement both correspond to the appropriate values
+ //I.e., -1 should correspond to arr[arr.length] and +1 should correspond to arr[1].  Some modular
+ //math is used to obtain the remainders of higher increment/decrement values
+ position = ((position % projects.length) + projects.length) % projects.length;
+ 
 }
 
 //Initial run of function to immediately populate page 
 carouselCycle(1);
 
 //Interval to periodically switch out cards on carousel
-let interval = setInterval(() => carouselCycle(1), 1000);
+let interval = setInterval(() => carouselCycle(1), 3000);
+
+const startCycle = () => {
+console.log('start cycle: ', !hoverPause)
+  if(!hoverPause) {
+  interval = setInterval(() => carouselCycle(1), 3000);
+  document.getElementsByClassName('information')[0].style.animationPlayState = 'running';
+  document.getElementById("img-container").style.animationPlayState = 'running';
+  }
+
+  hoverEnter = false;
+}
+
+const pauseCarousel = () => {
+  hoverEnter = true;
+  console.log('pause carousel: ', !hoverPause)
+  if (!hoverPause) { 
+    clearInterval(interval);
+    clearTimeout(timeoutID1);
+    clearTimeout(timeoutID2);
+    document.getElementsByClassName('information')[0].style.animationPlayState = 'paused';
+    document.getElementById("img-container").style.animationPlayState = 'paused';
+  }
+}
+
+
+//startCycle();
+
+//Event listener 
+mainContainer.addEventListener("mouseenter", pauseCarousel)
+mainContainer.addEventListener("mouseleave", startCycle)

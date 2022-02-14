@@ -1,3 +1,4 @@
+
 .nav-bar {
 position: absolute;
 top: 30px;
@@ -24,7 +25,9 @@ padding: 2px;
 font-size: 14px;
 margin: 12px;
 text-align: center;
+
 }
+
 
 .nav-items:hover {
   transform: scale(1.02);
@@ -44,32 +47,88 @@ text-align: center;
 
 
 .main-container {
-  background-color: #CCCCCC;
   padding: 0px;
+  overflow: hidden;
+  justify-content: center;
+  display: flex;
 }
+
+.focus-image {
+  height: 450px;
+  width: 450px;
+  animation-name: slidein;
+}
+
+.information {
+  height: 450px;
+  width: 450px;
+  margin-right: 900px;
+  background-color: black;
+  color: white;
+  opacity: 0.8;
+  position: absolute;
+  animation-name: infoStay;
+  animation-duration: 1s;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+  text-align: center;
+  vertical-align: middle;
+}
+
+@keyframes infoStay {
+  from{ 
+    margin-left: 0px;
+  }
+
+  to {
+    margin-left: 900px
+  }
+}
+
+.focus-container {
+  display: flex;
+  flex-direction: row;
+  width: 900px;
+  height: 450px;
+}
+
+.side-images {
+  opacity: 0.4;
+}
+
 
 #img-container {
   height: fit-content;
   width: fit-content;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: row;
-  overflow: hidden;
-  margin: auto;
+  overflow: auto;
+  animation-name: slidein;
+  animation-duration: 1s;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
 }
 
 #img-container > img {
+  margin: auto;
   height: 450px;
   width: 450px;
 }
 
-#information {
-  width: 500px;
-  height: 500px;
-  background-color: #CCCCCC;
-}
 
 #projects {
   font-size: 22px;
 }
 
+
+@keyframes slidein {
+  from{ 
+    padding-right: 0px;
+  }
+
+  to {
+    padding-right: 900px
+  }
+}
