@@ -122,6 +122,15 @@ text-align: center;
   font-size: 22px;
 }
 
+@-webkit-keyframes slidein {
+  from{ 
+    padding-right: 0px;
+  }
+
+  to {
+    padding-right: 900px
+  }
+}
 
 @keyframes slidein {
   from{ 

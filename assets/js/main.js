@@ -2,11 +2,8 @@
 let position = 0;
 let hoverPause = false;
 let hoverEnter = false;
-let timeoutID1 = null;
-let timeoutID2 = null;
-const animationDuration = 1000; //seconds
+let incrementVal = 1;
 const mainContainer = document.getElementById("main-container");
-
 
 //Project listing for carousel cards
 const projects = [
@@ -48,17 +45,32 @@ const projects = [
   }
 ];
 
+//Function that calls carouselCycle with incrementVal as arguments.  This function is used so that carouselCycle can be
+//attached to an event listener with incrementVal as an argument
+const startCycle = () => {
+  hoverPause = false;
+  carouselCycle(incrementVal);
+}
+
+//Do not freeze carousel while animation is in progress
+const delayPause = () => hoverPause = true;
+
 //Create and return an array of <img> elements for DOM
 const createImage = (portfolio, index) => {
   const imageList = [];
-  for(let i = (index); i < index + portfolio.length; i++) {
+  for(let i = (index); i < index + portfolio.length + 2; i++) {
  
     //Add informational node to image array
-    if(i % portfolio.length === Math.floor((index + portfolio.length/2) % portfolio.length)) {
+    if(i % portfolio.length === Math.floor((index + portfolio.length/2 + 1) % portfolio.length)) {
 
       const infNode = document.createElement('div');
       infNode.innerHTML = portfolio[i % portfolio.length].description;
       infNode.classList.add("information");
+      
+      //Add eventlisteners
+      infNode.addEventListener('animationend', startCycle);  //This will fire after animation creating a recursive call to startCycle
+      infNode.addEventListener('animationstart', delayPause);
+
       const header = document.createElement('h2');
       const headerText = document.createTextNode(projects[i % projects.length].name);
       header.appendChild(headerText);
@@ -86,15 +98,22 @@ const createImage = (portfolio, index) => {
 
 //Remove all <img> elements so that they can be replaced
 const resetContainer = () => {
+  
   const removeNode = document.getElementById('img-container');
-  mainContainer.removeChild(removeNode);
-
   const imgContainer = document.createElement('div');
+  const infoSlide = document.getElementsByClassName('information')[0];
+
+  mainContainer.removeChild(removeNode);
 
   imgContainer.class = "image-container";
   imgContainer.id = "img-container";
-
   mainContainer.appendChild(imgContainer);
+
+  //Remove event listener if infoSlide node exists
+  if(infoSlide) {
+    infoSlide.removeEventListener('animationend', startCycle);
+    infoSlide.removeEventListener('animationstart', delayPause);
+  }
 
   return document.getElementById('img-container');
 }
@@ -103,57 +122,42 @@ const resetContainer = () => {
 const carouselCycle = (incrementor) => {
   
   const imgContainer = resetContainer();
-
   const imageNodes = createImage(projects, position)
-
   imageNodes.forEach(node => imgContainer.appendChild(node));
-
-  //Sets the hoverPause variable to false so that the hoverEvent can safely pause the carousel while not in the 
-  //middle of an animation
-  timeoutID1 = setTimeout(() => hoverPause = true, 2000)
-  timeoutID2 = setTimeout(() => hoverPause = false, 3000)
-
- position = position + incrementor;
+  position = position + incrementor;
 
  //Ensure that a postive increment and a negative decrement both correspond to the appropriate values
  //I.e., -1 should correspond to arr[arr.length] and +1 should correspond to arr[1].  Some modular
  //math is used to obtain the remainders of higher increment/decrement values
- position = ((position % projects.length) + projects.length) % projects.length;
- 
-}
-
-//Initial run of function to immediately populate page 
-carouselCycle(1);
-
-//Interval to periodically switch out cards on carousel
-let interval = setInterval(() => carouselCycle(1), 3000);
-
-const startCycle = () => {
-console.log('start cycle: ', !hoverPause)
-  if(!hoverPause) {
-  interval = setInterval(() => carouselCycle(1), 3000);
-  document.getElementsByClassName('information')[0].style.animationPlayState = 'running';
-  document.getElementById("img-container").style.animationPlayState = 'running';
-  }
-
-  hoverEnter = false;
+  position = ((position % projects.length) + projects.length) % projects.length;
 }
 
 const pauseCarousel = () => {
   hoverEnter = true;
-  console.log('pause carousel: ', !hoverPause)
-  if (!hoverPause) { 
-    clearInterval(interval);
-    clearTimeout(timeoutID1);
-    clearTimeout(timeoutID2);
+  
+  if(!hoverPause) {
     document.getElementsByClassName('information')[0].style.animationPlayState = 'paused';
     document.getElementById("img-container").style.animationPlayState = 'paused';
   }
 }
 
+const resumeCarousel = () => {
+  document.getElementsByClassName('information')[0].style.animationPlayState = 'running';
+  document.getElementById("img-container").style.animationPlayState = 'running';
+}
 
-//startCycle();
-
-//Event listener 
+//Event listeners for pausing & resuming carousel
 mainContainer.addEventListener("mouseenter", pauseCarousel)
-mainContainer.addEventListener("mouseleave", startCycle)
+mainContainer.addEventListener("mouseleave", resumeCarousel)
+
+//Start carousel
+carouselCycle(incrementVal);
+
+
+//Next Steps
+// 1) Maybe add buffer slides based on how wide the screen is
+// 2) Figure out how to make the 'navbar' clickable and responsive
+// 3) Position the nav bar completely behind the carousel
+// 4) Add the About Me & Contact portions of the site
+// 5) Finish up any loose ends & deploy!!
+
