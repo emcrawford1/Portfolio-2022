@@ -153,6 +153,9 @@ mainContainer.addEventListener("mouseleave", resumeCarousel)
 //Start carousel
 carouselCycle(incrementVal);
 
+// const windowResize = () => console.log('Available width: ', window.innerWidth);
+
+// window.addEventListener('resize', windowResize);
 
 //Next Steps
 // 1) Maybe add buffer slides based on how wide the screen is
