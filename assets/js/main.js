@@ -1,8 +1,9 @@
 //Variables
 let position = 0;
 let hoverPause = false;
-let hoverEnter = false;
-let incrementVal = 1;
+let incrementor = 1;
+const rightArrowImg = document.getElementById('right-arrow');
+const leftArrowImg = document.getElementById('left-arrow');
 const mainContainer = document.getElementById("main-container");
 
 //Project listing for carousel cards
@@ -45,11 +46,40 @@ const projects = [
   }
 ];
 
-//Function that calls carouselCycle with incrementVal as arguments.  This function is used so that carouselCycle can be
-//attached to an event listener with incrementVal as an argument
-const startCycle = () => {
+const cycleRight = () => {
+
+  const imgContainer = document.getElementById('img-container')
+  const infoNode = document.getElementsByClassName('information')[0];
+
+  imgContainer.classList.remove("img-autocycle")
+  infoNode.classList.remove("information-autocycle");
+
+  imgContainer.classList.add("img-slidein-left");
+  infoNode.classList.add("information-leftcycle");
+
+  void infoNode.offsetWidth;
+};
+
+const cycleLeft = () => {
+  const imgContainer = document.getElementById('img-container')
+  const infoNode = document.getElementsByClassName('information')[0];
+
+  imgContainer.classList.remove("img-autocycle")
+  infoNode.classList.remove("information-autocycle");
+
+  imgContainer.classList.add("img-slidein-right");
+  infoNode.classList.add("information-rightcycle");
+  
+  void infoNode.offsetWidth;
+
+}
+
+//Function that calls carouselCycle with 1 as the initial argument.  This function is used so that carouselCycle can be
+//attached to an event listener and hoverPause can be set to false.  
+const startCycle = (event) => {
   hoverPause = false;
-  carouselCycle(incrementVal);
+  if(event.animationName === 'right-cycle') carouselCycle(-1);
+  else carouselCycle(1);
 }
 
 //Do not freeze carousel while animation is in progress
@@ -66,10 +96,13 @@ const createImage = (portfolio, index) => {
       const infNode = document.createElement('div');
       infNode.innerHTML = portfolio[i % portfolio.length].description;
       infNode.classList.add("information");
+      infNode.classList.add("information-autocycle");
       
       //Add eventlisteners
-      infNode.addEventListener('animationend', startCycle);  //This will fire after animation creating a recursive call to startCycle
+      infNode.addEventListener('animationend', startCycle);  
       infNode.addEventListener('animationstart', delayPause);
+      infNode.addEventListener("mouseenter", pauseCarousel)
+      infNode.addEventListener("mouseleave", resumeCarousel)
 
       const header = document.createElement('h2');
       const headerText = document.createTextNode(projects[i % projects.length].name);
@@ -77,12 +110,22 @@ const createImage = (portfolio, index) => {
       infNode.appendChild(header);
 
       const focusImg = document.createElement('img');
+      const containerDiv = document.createElement('div');
       focusImg.src = portfolio[i % portfolio.length].pic;
       focusImg.alt = portfolio[i % portfolio.length].name
+      
+
+      //Add event listeners to freeze & resume carousel when mouse enters & exits slide
+      focusImg.addEventListener("mouseenter", pauseCarousel)
+      focusImg.addEventListener("mouseleave", resumeCarousel)
+      
       focusImg.classList.add("focus-image");
+
+      containerDiv.classList.add('img-container-div');
+      containerDiv.appendChild(focusImg);
      
       imageList.push(infNode);
-      imageList.push(focusImg)
+      imageList.push(containerDiv)
     }
 
     else {
@@ -102,17 +145,31 @@ const resetContainer = () => {
   const removeNode = document.getElementById('img-container');
   const imgContainer = document.createElement('div');
   const infoSlide = document.getElementsByClassName('information')[0];
+  const focusSlide = document.getElementsByClassName('focus-image')[0];
 
   mainContainer.removeChild(removeNode);
 
-  imgContainer.class = "image-container";
   imgContainer.id = "img-container";
+
+  //Add appropriate animation depending on positive or negative incrementor value
+  //if(incrementor > 0) 
+  imgContainer.classList.add("img-autocycle");
+   //if(incrementor < 0) imgContainer.classList.add("img-slidein-right");
+
   mainContainer.appendChild(imgContainer);
 
-  //Remove event listener if infoSlide node exists
+  //Remove event listeners if infoSlide node exists
   if(infoSlide) {
     infoSlide.removeEventListener('animationend', startCycle);
     infoSlide.removeEventListener('animationstart', delayPause);
+    infoSlide.removeEventListener("mouseenter", pauseCarousel)
+    infoSlide.removeEventListener("mouseleave", resumeCarousel)
+  }
+
+  //Remove event listeners if focusSlide node exists
+  if(focusSlide) {
+    focusSlide.removeEventListener("mouseenter", pauseCarousel)
+    focusSlide.removeEventListener("mouseleave", resumeCarousel)
   }
 
   return document.getElementById('img-container');
@@ -122,19 +179,18 @@ const resetContainer = () => {
 const carouselCycle = (incrementor) => {
   
   const imgContainer = resetContainer();
-  const imageNodes = createImage(projects, position)
-  imageNodes.forEach(node => imgContainer.appendChild(node));
   position = position + incrementor;
 
  //Ensure that a postive increment and a negative decrement both correspond to the appropriate values
  //I.e., -1 should correspond to arr[arr.length] and +1 should correspond to arr[1].  Some modular
  //math is used to obtain the remainders of higher increment/decrement values
   position = ((position % projects.length) + projects.length) % projects.length;
+
+  const imageNodes = createImage(projects, position);
+  imageNodes.forEach(node => imgContainer.appendChild(node));
 }
 
 const pauseCarousel = () => {
-  hoverEnter = true;
-  
   if(!hoverPause) {
     document.getElementsByClassName('information')[0].style.animationPlayState = 'paused';
     document.getElementById("img-container").style.animationPlayState = 'paused';
@@ -146,21 +202,30 @@ const resumeCarousel = () => {
   document.getElementById("img-container").style.animationPlayState = 'running';
 }
 
-//Event listeners for pausing & resuming carousel
-mainContainer.addEventListener("mouseenter", pauseCarousel)
-mainContainer.addEventListener("mouseleave", resumeCarousel)
 
 //Start carousel
-carouselCycle(incrementVal);
+carouselCycle(1);
 
-// const windowResize = () => console.log('Available width: ', window.innerWidth);
+//Find and set width for transparent blurring divs
+const windowResize = () => {
+  const blurRight = document.getElementById('blur-right');
+  blurRight.style.width = `${(window.innerWidth - 450)/2}px`;
 
-// window.addEventListener('resize', windowResize);
+  const blurLeft = document.getElementById('blur-left');
+  blurLeft.style.width =  `${(window.innerWidth - 450)/2}px`;
+}
+
+//Run windowResize function to set initial values of the blur divs
+windowResize();
+
+//Attach event listener to window object so that if the window is resized the applicable divs are resized
+window.addEventListener('resize', windowResize);
+
+rightArrowImg.addEventListener('click', cycleRight);
+leftArrowImg.addEventListener('click', cycleLeft);
 
 //Next Steps
-// 1) Maybe add buffer slides based on how wide the screen is
 // 2) Figure out how to make the 'navbar' clickable and responsive
-// 3) Position the nav bar completely behind the carousel
 // 4) Add the About Me & Contact portions of the site
 // 5) Finish up any loose ends & deploy!!
 
