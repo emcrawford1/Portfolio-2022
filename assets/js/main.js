@@ -2,6 +2,7 @@
 let position = 0;
 let hoverPause = false;
 let incrementor = 1;
+let lastPressTime = new Date();
 const rightArrowImg = document.getElementById('right-arrow');
 const leftArrowImg = document.getElementById('left-arrow');
 const mainContainer = document.getElementById("main-container");
@@ -48,19 +49,58 @@ const projects = [
 
 const cycleRight = () => {
 
-  const imgContainer = document.getElementById('img-container')
-  const infoNode = document.getElementsByClassName('information')[0];
+  const currentPressTime = new Date();
+  let clickInterval;
 
-  imgContainer.classList.remove("img-autocycle")
-  infoNode.classList.remove("information-autocycle");
+//Only allow button to be responsive when animation is not in transition
+  if(!hoverPause) {
 
-  imgContainer.classList.add("img-slidein-left");
-  infoNode.classList.add("information-leftcycle");
+    const imgContainer = document.getElementById('img-container')
+    const infoNode = document.getElementsByClassName('information')[0];
+    
+    imgContainer.classList.remove("img-autocycle")
+    infoNode.classList.remove("information-autocycle");
+    
+    imgContainer.classList.add("img-slidein-left");
+    infoNode.classList.add("information-leftcycle");
 
-  void infoNode.offsetWidth;
+    //Get the time interval for the last time the user clicked the button
+    clickInterval = currentPressTime - lastPressTime;
+
+    //Add the appropriate CSS class (each has a different animation-duration)
+    switch(true) {
+
+      case (clickInterval <= 200): 
+        imgContainer.classList.add("img-fast-cycle")
+        infoNode.classList.add("information-fast-cycle");
+        break;
+
+      case (clickInterval > 200 && clickInterval <= 500):
+        imgContainer.classList.add("img-medium-cycle")
+        infoNode.classList.add("information-medium-cycle");
+        break;
+
+      default: 
+      imgContainer.classList.add("img-normal-cycle");
+      infoNode.classList.add("information-normal-cycle");
+
+    }
+
+    void infoNode.offsetWidth;
+  }
+
+  //Set lastPressTime variable to the last time the button was clicked
+  lastPressTime = new Date();
 };
 
 const cycleLeft = () => {
+
+  //Variable to check speed in between button clicks
+  const currentPressTime = new Date();
+
+//Only allow button to be responsive when animation is not in transition
+  if(!hoverPause) {
+
   const imgContainer = document.getElementById('img-container')
   const infoNode = document.getElementsByClassName('information')[0];
 
@@ -69,9 +109,23 @@ const cycleLeft = () => {
 
   imgContainer.classList.add("img-slidein-right");
   infoNode.classList.add("information-rightcycle");
+
+  //Check speed in between button clicks.  If user is hitting button quickly add class with fast animation duration
+  if(currentPressTime - lastPressTime < 300) { 
+    imgContainer.classList.add("img-fast-cycle")
+    infoNode.classList.add("information-fast-cycle");
+  }
+
+  else { 
+    imgContainer.classList.add("img-normal-cycle");
+    infoNode.classList.add("information-normal-cycle");
+  }
   
   void infoNode.offsetWidth;
+  }
 
+  //Set lastPressTime variable to the last time the button was clicked
+  lastPressTime = new Date();
 }
 
 //Function that calls carouselCycle with 1 as the initial argument.  This function is used so that carouselCycle can be
@@ -147,15 +201,17 @@ const resetContainer = () => {
   const infoSlide = document.getElementsByClassName('information')[0];
   const focusSlide = document.getElementsByClassName('focus-image')[0];
 
+  //Remove img-container element from the main container element
   mainContainer.removeChild(removeNode);
 
+  //Add id to new image container element
   imgContainer.id = "img-container";
 
-  //Add appropriate animation depending on positive or negative incrementor value
-  //if(incrementor > 0) 
+  //Add img-autocycle class to element that will hold images.  This class has an animation attached that will
+  //cycle through the elements
   imgContainer.classList.add("img-autocycle");
-   //if(incrementor < 0) imgContainer.classList.add("img-slidein-right");
 
+  //Attach new image container element to main container element
   mainContainer.appendChild(imgContainer);
 
   //Remove event listeners if infoSlide node exists

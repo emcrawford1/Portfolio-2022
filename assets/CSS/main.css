@@ -1,3 +1,11 @@
+:root {
+  --slide-speed: 0.35s;
+  --medium-cycle: 0.25s;
+  --fast-cycle: 0.05s;
+  --autocycle-delay: 3s;
+  --autocycle-speed: 0.5s;
+}
+
 
 .nav-bar {
 position: absolute;
@@ -11,20 +19,24 @@ z-index: -1;
 
 .nav-items-container {
   position: absolute;
-  left: 50%;
+  right: 22.5%;
   top: 100px;
   transform: translate(-50%, -15%);
   width: fit-content;
   height: fit-content;
+  z-index: 16;
 }
 
+
 .nav-items {
+position: relative;
 color: #CCCCCC;
 font-family: Helvetica, sans-serif;
 padding: 2px;
 font-size: 14px;
 margin: 12px;
 text-align: center;
+z-index:  16;
 }
 
 
@@ -94,7 +106,6 @@ text-align: center;
 
 .information-leftcycle {
   animation-name: left-cycle;
-  animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
 
@@ -111,8 +122,19 @@ text-align: center;
 
 .information-rightcycle {
   animation-name: right-cycle;
-  animation-duration: 0.5s;
   animation-fill-mode: forwards;
+}
+
+.information-normal-cycle {
+  animation-duration: var(--slide-speed);
+}
+
+.information-medium-cycle {
+  animation-duration: var(--medium-cycle);
+}
+
+.information-fast-cycle {
+  animation-duration: var(--fast-cycle);
 }
 
 @keyframes right-cycle {
@@ -128,8 +150,8 @@ text-align: center;
 
 .information-autocycle {
   animation-name: infoStay;
-  animation-duration: 1s;
-  animation-delay: 3s;
+  animation-duration: var(--autocycle-speed);
+  animation-delay: var(--autocycle-delay);
   animation-fill-mode: forwards;
 }
 
@@ -182,20 +204,30 @@ text-align: center;
 
 .img-autocycle {
   animation-name: img-autocycle;
-  animation-duration: 1s;
-  animation-delay: 3s;
+  animation-duration: var(--autocycle-speed);
+  animation-delay: var(--autocycle-delay);
   animation-fill-mode: forwards;
 }
 .img-slidein-left {
   animation-name: slidein-left;
-  animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
 
 .img-slidein-right {
   animation-name: slidein-right;
-  animation-duration: 0.5s;
   animation-fill-mode: forwards;
+}
+
+.img-normal-cycle {
+  animation-duration: var(--slide-speed);
+}
+
+.img-medium-cycle {
+  animation-duration: var(--medium-cycle);
+}
+
+.img-fast-cycle {
+  animation-duration: var(--fast-cycle);
 }
 
 #img-container > img {
@@ -207,7 +239,13 @@ text-align: center;
 
 #projects {
   font-size: 22px;
+  z-index: 10;
 }
+
+#projects:hover{
+  cursor: pointer;
+}
+
 
 @keyframes img-autocycle {
   from{ 
