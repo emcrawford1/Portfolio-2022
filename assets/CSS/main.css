@@ -10,7 +10,7 @@
 .nav-bar {
 position: absolute;
 top: 30px;
-right: 23%;
+right: 300px;
 background-color: black;
 height: 97%;
 width: 200px;
@@ -19,7 +19,7 @@ z-index: -1;
 
 .nav-items-container {
   position: absolute;
-  right: 22.5%;
+  right: 265px;
   top: 100px;
   transform: translate(-50%, -15%);
   width: fit-content;
@@ -27,12 +27,12 @@ z-index: -1;
   z-index: 16;
 }
 
-
 .nav-items {
 position: relative;
 color: #CCCCCC;
 font-family: Helvetica, sans-serif;
 padding: 2px;
+width: 110px;
 font-size: 14px;
 margin: 12px;
 text-align: center;
@@ -43,6 +43,16 @@ z-index:  16;
 .nav-items:hover {
   transform: scale(1.02);
   cursor: pointer;
+}
+
+.nav-items > a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.nav-items-focus {
+  font-size: 22px;
+  z-index: 10;
 }
 
 .logo { 
@@ -95,13 +105,13 @@ z-index:  16;
   height: 450px;
   width: 450px;
   margin-right: 900px;
-  background-color: rgb(70, 70, 70);
+  background-color: rgb(0, 0, 0);
   color: white;
-  opacity: 0.8;
+  opacity: 0.2;
   position: absolute;
   text-align: center;
   vertical-align: middle;
-  z-index: 8;
+  z-index: 11;
 }
 
 .information-leftcycle {
@@ -170,14 +180,14 @@ z-index:  16;
   opacity: 0.5;
   position: absolute;
   left: 2%;
-  z-index: 10;
+  z-index: 12;
 }
 
 #right-arrow {
   opacity: 0.5;
   position: absolute;
   right: 2%;
-  z-index: 10;
+  z-index: 12;
 }
 
 #right-arrow:hover{
@@ -236,17 +246,6 @@ z-index:  16;
   width: 450px;
 }
 
-
-#projects {
-  font-size: 22px;
-  z-index: 10;
-}
-
-#projects:hover{
-  cursor: pointer;
-}
-
-
 @keyframes img-autocycle {
   from{ 
     padding-right: 0px;
@@ -291,16 +290,20 @@ z-index:  16;
   position: absolute;
   height: 450px;
   right: 0%;
-  background-color: #CCCCCC;
-  opacity: 0.5;
-  z-index: 1;
+  background-color: #000000;
+  opacity: 0.90;
+  z-index: 10;
 }
 
 #blur-left{
   position: absolute;
   height: 450px;
   left: 0%;
-  background-color: #CCCCCC;
-  opacity: 0.5;
-  z-index: 1;
+  background-color: #000000;
+  opacity: 0.9;
+  z-index: 10;
+
+  /* animation-name: left-cycle;
+  animation-fill-mode: forwards;
+  animation-duration: var(--slide-speed); */
 }

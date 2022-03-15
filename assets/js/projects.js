@@ -75,7 +75,7 @@ const cycleRight = () => {
         infoNode.classList.add("information-fast-cycle");
         break;
 
-      case (clickInterval > 200 && clickInterval <= 500):
+      case (clickInterval > 200 && clickInterval <= 700):
         imgContainer.classList.add("img-medium-cycle")
         infoNode.classList.add("information-medium-cycle");
         break;
@@ -110,15 +110,26 @@ const cycleLeft = () => {
   imgContainer.classList.add("img-slidein-right");
   infoNode.classList.add("information-rightcycle");
 
-  //Check speed in between button clicks.  If user is hitting button quickly add class with fast animation duration
-  if(currentPressTime - lastPressTime < 300) { 
-    imgContainer.classList.add("img-fast-cycle")
-    infoNode.classList.add("information-fast-cycle");
-  }
+   //Get the time interval for the last time the user clicked the button
+   clickInterval = currentPressTime - lastPressTime;
 
-  else { 
+   //Add the appropriate CSS class (each has a different animation-duration)
+   switch(true) {
+
+    case (clickInterval <= 200): 
+      imgContainer.classList.add("img-fast-cycle")
+      infoNode.classList.add("information-fast-cycle");
+      break;
+
+    case (clickInterval > 200 && clickInterval <= 700):
+      imgContainer.classList.add("img-medium-cycle")
+      infoNode.classList.add("information-medium-cycle");
+      break;
+
+    default: 
     imgContainer.classList.add("img-normal-cycle");
     infoNode.classList.add("information-normal-cycle");
+
   }
   
   void infoNode.offsetWidth;
@@ -281,7 +292,6 @@ rightArrowImg.addEventListener('click', cycleRight);
 leftArrowImg.addEventListener('click', cycleLeft);
 
 //Next Steps
-// 2) Figure out how to make the 'navbar' clickable and responsive
 // 4) Add the About Me & Contact portions of the site
 // 5) Finish up any loose ends & deploy!!
 
