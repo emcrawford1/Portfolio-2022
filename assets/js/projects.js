@@ -159,7 +159,27 @@ const createImage = (portfolio, index) => {
     if(i % portfolio.length === Math.floor((index + portfolio.length/2 + 1) % portfolio.length)) {
 
       const infNode = document.createElement('div');
-      infNode.innerHTML = portfolio[i % portfolio.length].description;
+      const projectName = document.createElement('div');
+      const projectDescr = document.createElement('div');
+      const projectGitHub = document.createElement('div');
+      
+      projectName.innerHTML = portfolio[i % portfolio.length].name;
+      projectDescr.innerHTML = portfolio[i % portfolio.length].description;
+      projectGitHub.innerHTML = portfolio[i % portfolio.length].github;
+
+      infNode.appendChild(projectName);
+      infNode.appendChild(projectDescr);
+      infNode.appendChild(projectGitHub);
+
+      //Check if current project object has a deployed link.  If so create and add to information node.
+      if(portfolio[i % portfolio.length].hasOwnProperty('deployed')) {
+        const projectDeployed = document.createElement('a');
+        projectDeployed.setAttribute("href", portfolio[i % portfolio.length].deployed);
+        projectDeployed.innerHTML = portfolio[i % portfolio.length].deployed;
+
+        infNode.appendChild(projectDeployed);
+      }
+    
       infNode.classList.add("information");
       infNode.classList.add("information-autocycle");
       
@@ -249,8 +269,8 @@ const carouselCycle = (incrementor) => {
   position = position + incrementor;
 
  //Ensure that a postive increment and a negative decrement both correspond to the appropriate values
- //I.e., -1 should correspond to arr[arr.length] and +1 should correspond to arr[1].  Some modular
- //math is used to obtain the remainders of higher increment/decrement values
+ //I.e., with a starting value of 0, -1 should correspond to arr[arr.length] and +1 should correspond to arr[1].  
+ //Some modular math is used to obtain the remainders of higher increment/decrement values
   position = ((position % projects.length) + projects.length) % projects.length;
 
   const imageNodes = createImage(projects, position);
