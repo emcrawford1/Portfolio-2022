@@ -159,25 +159,47 @@ const createImage = (portfolio, index) => {
     if(i % portfolio.length === Math.floor((index + portfolio.length/2 + 1) % portfolio.length)) {
 
       const infNode = document.createElement('div');
+
+      //Create information that will appear in the information panel
       const projectName = document.createElement('div');
       const projectDescr = document.createElement('div');
-      const projectGitHub = document.createElement('div');
+      const projectGitHub = document.createElement('a');
+
+      projectGitHub.setAttribute("href", portfolio[i % portfolio.length].github);
       
       projectName.innerHTML = portfolio[i % portfolio.length].name;
       projectDescr.innerHTML = portfolio[i % portfolio.length].description;
       projectGitHub.innerHTML = portfolio[i % portfolio.length].github;
 
+      //Add containers for anchor tags (for formatting)
+      const githubContainer = document.createElement('div');
+      githubContainer.innerHTML = 'GitHub: ';
+      githubContainer.appendChild(projectGitHub);
+
+      //Add classes to the information panel items
+      projectName.classList.add('project-name');
+      projectDescr.classList.add('project-descr');
+      githubContainer.classList.add('project-github');
+
+
       infNode.appendChild(projectName);
       infNode.appendChild(projectDescr);
-      infNode.appendChild(projectGitHub);
+      infNode.appendChild(githubContainer);
 
       //Check if current project object has a deployed link.  If so create and add to information node.
       if(portfolio[i % portfolio.length].hasOwnProperty('deployed')) {
+        
+        const deployedContainter = document.createElement('div');
         const projectDeployed = document.createElement('a');
+
         projectDeployed.setAttribute("href", portfolio[i % portfolio.length].deployed);
         projectDeployed.innerHTML = portfolio[i % portfolio.length].deployed;
 
-        infNode.appendChild(projectDeployed);
+        deployedContainter.classList.add('project-deployed');
+        deployedContainter.innerHTML = 'Deployed: ';
+        deployedContainter.appendChild(projectDeployed);
+        
+        infNode.appendChild(deployedContainter);
       }
     
       infNode.classList.add("information");
@@ -189,10 +211,6 @@ const createImage = (portfolio, index) => {
       infNode.addEventListener("mouseenter", pauseCarousel)
       infNode.addEventListener("mouseleave", resumeCarousel)
 
-      const header = document.createElement('h2');
-      const headerText = document.createTextNode(projects[i % projects.length].name);
-      header.appendChild(headerText);
-      infNode.appendChild(header);
 
       const focusImg = document.createElement('img');
       const containerDiv = document.createElement('div');
