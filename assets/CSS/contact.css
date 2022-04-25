@@ -1,12 +1,11 @@
 :root {
-  --form-color: #66CCFF;
-  /* --form-underline: #e4e4e4; */
-  --form-container-color: white;
-  --form-underline: #a8def8;
-  --form-focus_underline: #cecdcd;
-  --form-underline-width: 1px;
+  --input-width: 610px;
+  --input-half-width: 298px;
+  --form-color: #2db9ff;
 }
 
+
+/* Nav & logo styling */
 .nav-items-container {
   position: absolute;
   right: 15%;
@@ -55,185 +54,89 @@
   z-index: inherit;
 }
 
-.main-container {
-  padding: 0px;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  width: 30%;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  top: 270px;  
+
+/* Form styling */
+.contact-container {
+  width: 650px;
+  height: 315px;
+  margin: 0px;
+  background-color: #2db9ff;
+  position: relative;
+  top: 300px;
+  padding-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 5px 5px 10px #c3e5f7;
 }
 
-
-input {
-  width: 100%;
-  margin-bottom: 5px
+.contact-me {
+  font-family:'Helvetica Neue', sans-serif;
+  font-size: 20px;
+  color: whitesmoke;
+  font-weight: 400;
+  text-align: center;
 }
 
-textarea {
-  min-height: 75px;
-  width: 100%;
-  border-top-style: none;
-  border-left-style: none;
-  border-right-style: none;
-  border-bottom-style: solid;
-  border-bottom-width: var(--form-underline-width);
-  border-bottom-color: var(--form-underline);
-  background-color: var(--form-color);
-  resize: none;
-  padding: 0px;
+.contact-container > form {
+  width: 630px;
+  background-color: #2db9ff;
+  padding-left: 15px;
 }
 
-.form-container {
-  width: 500px;
-  width: 100%;
-  height: 100%;
-  padding: 10px;
-  margin-top: 15px;
-  background-color: var(--form-color);
-  box-shadow: 0px 0px 4px #929292;
+.contact-container > form > input, textarea { 
+  border: none;
+  background-color: #66CCFF;
+  margin-top: 5px;
+  color: white;
+  padding: 5px 5px;
+  font-family:'Helvetica Neue', sans-serif;
+  font-size: 12px;
+ 
 }
 
-.form-container > form {
-  font-family: Helvetica, sans-serif;
-  font-size: 14px;
+.contact-container > form > input::placeholder, textarea::placeholder {
+  color: #c3e5f7;
+  font-weight: 400;
+  font-size: 12px;
+  font-family:'Helvetica Neue', sans-serif;
+  letter-spacing: 0.03em;
 }
 
-.form-container > form > input {
-  border-top-style: none;
-  border-left-style: none;
-  border-right-style: none;
-  border-bottom-style: solid;
-  border-bottom-width: var(--form-underline-width);
-  border-bottom-color: var(--form-underline);
-  border-bottom-right-radius: .5px;
-  padding: 0px;
-  margin-bottom: 10px;
-  background-color: var(--form-color);
-}
-
-.form-container > form > input:focus, textarea:focus {
+.contact-container > form > input:focus, textarea:focus {
   outline: none;
-  border-radius: 1px;
-  border-bottom-color: var(--form-focus_underline);
 }
 
-.form-container > form > input::placeholder, textarea::placeholder {
-  color: #c4c4c4;
-  font-family: Helvetica, sans-serif;
-  font-style: italic;
+#message {
+  resize: none;
+  width: var(--input-width);
+}
+
+
+#name, #company, #email, #phone {
+  width: var(--input-half-width);
 }
 
 .submit-btn {
-  background-color: var(--form-color);
-  border-style: none;
-  color: white;
-  font-weight: bold;
+  border: none;
+  background-color: #FF732D;
+  color: whitesmoke;
+  width: 620px;
+  padding: 5px;
+  font-family:'Helvetica Neue', sans-serif;
   font-size: 15px;
-  padding: 0px;
-  margin: 0px;
-  border-radius: 2px;
-  
+  font-weight: 500;
+  margin-top: 5px;
 }
 
 .submit-btn:hover {
-  color: #a8def8;
   cursor: pointer;
+  transform: scale(1.01);
 }
 
-.submit-btn:active{
-  color: #0088cb;
+.submit-btn:active {
+  transform: scale(0.99);
+
 }
 
 
 
-
-/* Test classes */
-
-.contact-info {
-  width: 50%;
-  height: 100%;
-  position: absolute;
-  right: 50%;
-  margin-top: 10px;
-}
-
-.contact-title {
-  font-size: 20px;
-  font-family: Helvetica, sans-serif;
-  color: #66CCFF;
-  text-align: center;
-  font-weight: bold;
-}
-
-.main-form > form > input:focus, textarea:focus {
-  outline: none;
-  border-radius: 1px;
-  border-bottom-color: var(--form-focus_underline);
-}
-
-.main-form > form > input::placeholder, textarea::placeholder {
-  color: var(--form-underline);
-  font-family: Helvetica, sans-serif;
-  font-style: italic;
-}
-
-.main-form > form > input {
-  border-top-style: none;
-  border-left-style: none;
-  border-right-style: none;
-  border-bottom-style: solid;
-  border-bottom-width: var(--form-underline-width);
-  border-bottom-color: var(--form-underline);
-  border-bottom-right-radius: .5px;
-  padding: 0px;
-  margin-bottom: 10px;
-  margin-top: 5px;
-  background-color: var(--form-color);
-  position: relative;
-}
-
-.main-form {
-  position: absolute;
-  left: 50%;
-  top: 0px;
-  width: 50%;
-  height: 250px;
-  margin: 0px;
-  background-color: var(--form-color);
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.main-form > form {
-  font-family: Helvetica, sans-serif;
-  font-size: 14px;
-  border-radius: 10px;
-}
-
-.form-container-2 {
-  background-color: var(--form-container-color);
-  box-shadow: 0px 0px 4px #929292;
-  padding: 0px;
-  border-style: solid;
-  border-width: 3px;
-  border-color: var(--form-color);
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  height: fit-content;
-  width: 650px;
-  height: 250px;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  top: 270px;  
-  border-radius: 10px;
-}
-
-.form-container-2 > form {
-  font-family: Helvetica, sans-serif;
-  font-size: 14px;
-  z-index: -4;
-}
