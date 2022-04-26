@@ -41,13 +41,14 @@
     <div class="contact-container">
       <div class="contact-me">CONTACT ME</div>
       <form action="#" spellcheck="false">
-        <input type="text" name="name" id="name" placeholder="Full Name*" />
+        <input type="text" name="name" id="name" placeholder="Full Name**" />
         <input type="text" name="company" id="company" placeholder="Company Name">
         <br />
-        <input type="email" name="email" id="email" placeholder="Email*" />
+        <div class="error-message" id="name-error">**Please enter your full name</div>
+        <input type="email" name="email" id="email" placeholder="Email**" />
         <input type="tel" name="phone" id="phone" placeholder="Phone Number " />
-        
         <br />
+        <div class="error-message" id="email-error">**Please enter your email address</div>
         <textarea
           name="message"
           id="message"
@@ -56,8 +57,9 @@
           rows="15"
         ></textarea>
         <br />
-        <button type="button" class="clear-btn">Clear Form</button>
-        <button type="button" class="submit-btn">Send</button>
+        <div class="error-message" id="message-error">**Please enter a message</div>
+        <button type="button" class="clear-btn" id="clear-btn">Clear Form</button>
+        <button type="button" class="submit-btn" id="submit-btn">Send</button>
       </form>
     </div>
 

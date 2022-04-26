@@ -1,6 +1,6 @@
 :root {
   --input-width: 610px;
-  --input-half-width: 298px;
+  --input-half-width: 295.5px;
   --form-color: #2db9ff;
 }
 
@@ -54,11 +54,11 @@
   z-index: inherit;
 }
 
-
 /* Form styling */
 .contact-container {
   width: 650px;
-  height: 425px;
+  overflow: auto;
+  padding-bottom: 15px;
   margin: 0px;
   background-color: #2db9ff;
   position: relative;
@@ -88,12 +88,11 @@
 .contact-container > form > input, textarea { 
   border: none;
   background-color: #66CCFF;
-  margin-top: 5px;
+  margin-top: 8px;
   color: white;
   padding: 7px 5px;
   font-family:'Helvetica Neue', sans-serif;
   font-size: 14px;
-  /* border-radius: 2px; */
 }
 
 .contact-container > form > input::placeholder, textarea::placeholder {
@@ -113,6 +112,9 @@
   width: var(--input-width);
 }
 
+#name, #email {
+  margin-right: 5px;
+}
 
 #name, #company, #email, #phone {
   width: var(--input-half-width);
@@ -163,6 +165,15 @@
   background-color: #9F1C32;
 }
 
+.error-message {
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 7px;
+  color: #FF2D50;
+  display: none;
+}
 
-
-
+#message-error {
+  margin-top: 2px;
+  margin-bottom: 4px;
+}
