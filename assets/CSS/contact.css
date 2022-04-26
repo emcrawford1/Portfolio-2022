@@ -58,7 +58,7 @@
 /* Form styling */
 .contact-container {
   width: 650px;
-  height: 315px;
+  height: 425px;
   margin: 0px;
   background-color: #2db9ff;
   position: relative;
@@ -67,14 +67,16 @@
   margin-left: auto;
   margin-right: auto;
   box-shadow: 5px 5px 10px #c3e5f7;
+  border-radius: 2px;
 }
 
 .contact-me {
   font-family:'Helvetica Neue', sans-serif;
-  font-size: 20px;
+  font-size: 22px;
   color: whitesmoke;
   font-weight: 400;
   text-align: center;
+  margin-bottom: 4px;
 }
 
 .contact-container > form {
@@ -88,10 +90,10 @@
   background-color: #66CCFF;
   margin-top: 5px;
   color: white;
-  padding: 5px 5px;
+  padding: 7px 5px;
   font-family:'Helvetica Neue', sans-serif;
-  font-size: 12px;
- 
+  font-size: 14px;
+  /* border-radius: 2px; */
 }
 
 .contact-container > form > input::placeholder, textarea::placeholder {
@@ -118,25 +120,49 @@
 
 .submit-btn {
   border: none;
-  background-color: #FF732D;
+  background-color: #228BBF;
   color: whitesmoke;
-  width: 620px;
+  width: 308px;
   padding: 5px;
   font-family:'Helvetica Neue', sans-serif;
   font-size: 15px;
   font-weight: 500;
-  margin-top: 5px;
+  margin-top: 7px;
+  border-radius: 2px;
 }
 
 .submit-btn:hover {
   cursor: pointer;
-  transform: scale(1.01);
+  background-color: #1E7AA7;
 }
 
 .submit-btn:active {
-  transform: scale(0.99);
-
+  background-color: #1A688F;
 }
+
+.clear-btn {
+  border: none;
+  background-color: #DF2746;
+  color: whitesmoke;
+  width: 304px;
+  padding: 5px;
+  font-family:'Helvetica Neue', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 7px;
+  margin-right: 4px;
+  border-radius: 2px;
+}
+
+.clear-btn:hover {
+  cursor: pointer;
+  background-color: #BF223C;
+}
+
+.clear-btn:active {
+  background-color: #9F1C32;
+}
+
 
 
 
