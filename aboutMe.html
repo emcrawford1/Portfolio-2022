@@ -10,6 +10,10 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="./assets/CSS/reset.css" />
     <link rel="stylesheet" href="./assets/CSS/about.css" />
+
+    <!-- Projects.css -->
+    <link rel="stylesheet" href="./assets/CSS/projects.css" />
+
   </head>
   <body>
 
@@ -42,9 +46,29 @@
       <div class="text3">I like to challenge myself with <div class="difficult">difficult </div>projects</div>
       <div class="text4">and have experience with <div class="technologies">HTML, CSS, Javascript, jQuery, React, SQL, </div> and <div class="technologies"> Node.js.</div></div>
       <div class="text5">I want a career where I can grow as a <div class="developer">WEB DEVELOPER</div> and pursue meaningful interests within technology.</div>
-      <div class="text6">I created this website from scratch using <div class="technologies">HTML, CSS, </div> and <div class="technologies">Javascript.</div></div>
+      <div class="text6">I created this website from scratch using <div class="technologies">HTML, CSS, </div> and <div class="technologies">Javascript.</div> The carousel logic was all custom written.</div>
       <div class="text7">If you're interested in discussing anything coding or web related, please <div class="reach-out">reach out!</div></div>
     </div>
     <div id="blue-bar"></div>
+ 
+    <div id="main-container" class="main-container">
+      <img
+        src="./assets/images/Left_Arrow.png"
+        alt="Left Arrow"
+        style="width: 50px; height: 50px"
+        id="left-arrow"
+      />
+      <img
+        src="./assets/images/Right_Arrow.png"
+        alt="Left Arrow"
+        style="width: 50px; height: 50px"
+        id="right-arrow"
+      />
+      <div id="blur-left"></div>
+      <div id="blur-right"></div>
+      <div id="img-container" class="image-container"></div>
+    </div>
+    <div class="projects-bar"> <div class="projects-title">PROJECTS</div></div>
+    <script src="./assets/js/projects.js"></script>
   </body>
 </html>
