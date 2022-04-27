@@ -9,7 +9,7 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="./assets/CSS/reset.css" />
-    <link rel="stylesheet" href="./assets/CSS/main.css" />
+    <link rel="stylesheet" href="./assets/CSS/projects.css" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,26 +20,26 @@
     />
   </head>
   <body>
-    <div class="logo">
-      <img
-        src="./assets/images/Personal_Logo_Mountain_II.png"
-        alt="Personal Logo"
-        style="width: 1367px; height: 314px"
-      />
-    </div>
-    <div class="nav-bar"></div>
+    <div id="contact-container">
+      <div class="logo">
+        <img
+          src="./assets/images/Personal_Logo_Mountain_II.png"
+          alt="Personal Logo"
+          style="width: 1367px; height: 314px"
+        />
+      </div>
       <div class="nav-items-container">
+        <ul class="nav-items" id="about-me">
+          <a href="aboutMe.html">About Me</a>
+        </ul>
         <ul class="nav-items nav-items-focus" id="projects">
           Projects
         </ul>
-        <ul class="nav-items" id="about-me">
-           <a href="aboutMe.html">About Me</a>
-        </ul>
         <ul class="nav-items" id="contacts">
-          <a href="contact.html">Contact</a> 
+          <a href="contact.html">Contact</a>
         </ul>
       </div>
-    
+    </div>
     <div id="main-container" class="main-container">
       <img
         src="./assets/images/Left_Arrow.png"
@@ -57,6 +57,7 @@
       <div id="blur-right"></div>
       <div id="img-container" class="image-container"></div>
     </div>
+
     <script src="./assets/js/projects.js"></script>
   </body>
 </html>

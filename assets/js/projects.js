@@ -329,7 +329,4 @@ window.addEventListener('resize', windowResize);
 rightArrowImg.addEventListener('click', cycleRight);
 leftArrowImg.addEventListener('click', cycleLeft);
 
-//Next Steps
-// 4) Add the About Me & Contact portions of the site
-// 5) Finish up any loose ends & deploy!!
 
