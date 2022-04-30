@@ -11,6 +11,10 @@ const mainContainer = document.getElementById("main-container");
 const aboutMeTitle = document.getElementById("about-title");
 const projectsTitle = document.getElementById("projects-title");
 const contactTitle = document.getElementById("contacts-title");
+const navBar = document.getElementsByClassName("nav-items-container")[0];
+const navDivider = document.getElementById("nav-divider");
+
+//Variable to throttle scroll event
 let scrolling = false;
 
 //Project listing for carousel cards
@@ -321,35 +325,69 @@ const windowResize = () => {
   blurLeft.style.width = `${(window.innerWidth - 450) / 2}px`;
 };
 
-//Set scrolling variable to true - so that setInterval below knows to resize nav element
-const navItemResize = () => scrolling = true;
+//Set scrolling variable to true - so that setInterval below knows to run functions in response
+//to scroll event
+const mouseScrolled = () => scrolling = true;
 
-//Interval to throttle the scroll event listener and resize nav elements dependent on 
-//where the user is on the page.
+//Interval to throttle the scroll event listener.  Several functions on the page react
+//to the scroll event
 setInterval(() => {
   if (scrolling) {
+
     scrolling = false;
-    console.log(window.scrollY)
-    switch (true) {
-      case window.scrollY <= 465:
-        aboutMeTitle.style.fontSize = "22px";
-        projectsTitle.style.fontSize = "14px";
-        contactTitle.style.fontSize = "14px";
-        break;
 
-      case window.scrollY > 465 && window.scrollY <= 1300:
-        aboutMeTitle.style.fontSize = "14px";
-        projectsTitle.style.fontSize = "22px";
-        contactTitle.style.fontSize = "14px";
-        break;
-
-      default:
-        aboutMeTitle.style.fontSize = "14px";
-        projectsTitle.style.fontSize = "14px";
-        contactTitle.style.fontSize = "22px";
-    }
+    navItemResized();
+    navHeaderFloat();
   }
 }, 150);
+
+const navItemResized = () => {
+  switch (true) {
+    case window.scrollY <= 465:
+      aboutMeTitle.style.fontSize = "22px";
+      projectsTitle.style.fontSize = "14px";
+      contactTitle.style.fontSize = "14px";
+      break;
+
+    case window.scrollY > 465 && window.scrollY <= 1300:
+      aboutMeTitle.style.fontSize = "14px";
+      projectsTitle.style.fontSize = "22px";
+      contactTitle.style.fontSize = "14px";
+      break;
+
+    default:
+      aboutMeTitle.style.fontSize = "14px";
+      projectsTitle.style.fontSize = "14px";
+      contactTitle.style.fontSize = "22px";
+  }
+}
+
+const navHeaderFloat = () => {
+
+    if(window.scrollY > 140) {
+
+      navBar.style.position = "fixed";
+      navBar.style.right = "0px";
+      navBar.style.left = "0px";
+      navBar.style.top = "10px";
+      navBar.style.marginRight = "auto";
+      navBar.style.marginLeft = "auto";
+
+      navDivider.style.display = "inline";
+
+    }
+
+    else {
+      navBar.style.position = "absolute";
+      navBar.style.left = "";
+      navBar.style.right = "15%";
+      navBar.style.top = "153px";
+      navBar.style.marginRight = "0px";
+      navBar.style.marginLeft = "0px";
+
+      navDivider.style.display = "none";
+    }
+}
 
 //Run windowResize function to set initial values of the blur divs
 windowResize();
@@ -357,7 +395,7 @@ windowResize();
 //Attach event listener to window object so that if the window is resized the applicable divs are resized
 window.addEventListener("resize", windowResize);
 
-window.addEventListener("scroll", navItemResize);
+window.addEventListener("scroll", mouseScrolled);
 
 rightArrowImg.addEventListener("click", cycleRight);
 leftArrowImg.addEventListener("click", cycleLeft);
