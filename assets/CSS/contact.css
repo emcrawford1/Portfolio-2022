@@ -5,64 +5,16 @@
 }
 
 
-/* Nav & logo styling */
-.nav-items-container {
-  position: absolute;
-  right: 15%;
-  top: 153px;
-  width: fit-content;
-  z-index: 16;
-}
-
-.nav-items {
-  position: relative;
-  color: #666666;
-  font-family: Helvetica, sans-serif;
-  padding: 2px;
-  width: 95px;
-  font-size: 14px;
-  text-align: center;
-  z-index: 16;
-  display: inline;
-  display: inline-block;
-  margin: 0px;
-}
-
-.nav-items:hover {
-  transform: scale(1.03);
-  cursor: pointer;
-}
-
-.nav-items > a {
-  color: inherit;
-  text-decoration: inherit;
-}
-
-.nav-items-focus {
-  font-size: 22px;
-  z-index: 10;
-}
-
-.logo {
-  position: absolute;
-  justify-content: center;
-  top: -60px;
-  z-index: 2;
-}
-
-.logo > img {
-  z-index: inherit;
-}
 
 /* Form styling */
 .contact-container {
   width: 650px;
-  overflow: auto;
+  /* overflow: auto; */
   padding-bottom: 15px;
   margin: 0px;
   background-color: #2db9ff;
   position: relative;
-  top: 280px;
+  top: -370px;
   padding-top: 10px;
   margin-left: auto;
   margin-right: auto;
