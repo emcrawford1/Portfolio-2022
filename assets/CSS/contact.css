@@ -9,15 +9,15 @@
 /* Form styling */
 .contact-container {
   width: 650px;
-  /* overflow: auto; */
   padding-bottom: 15px;
   margin: 0px;
   background-color: #2db9ff;
   position: relative;
-  top: -370px;
+  top: 100px;
   padding-top: 10px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 150px;
   box-shadow: 5px 5px 10px #c3e5f7;
   border-radius: 2px;
 }
