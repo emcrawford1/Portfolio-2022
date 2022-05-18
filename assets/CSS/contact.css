@@ -11,44 +11,50 @@
   width: 650px;
   padding-bottom: 15px;
   margin: 0px;
-  background-color: #2db9ff;
+  background-color: rgba(45, 185, 255, 0.3);
   position: relative;
-  top: 100px;
+  top: 60em;
   padding-top: 10px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 150px;
-  box-shadow: 5px 5px 10px #c3e5f7;
+  margin-bottom: 55em;
+  /* box-shadow: 5px 5px 10px #c3e5f7; */
   border-radius: 2px;
+
 }
 
 .contact-me {
   font-family:'Helvetica Neue', sans-serif;
   font-size: 22px;
-  color: whitesmoke;
+  /* color: whitesmoke; */
+  color:rgb(65, 190, 252);
   font-weight: 400;
   text-align: center;
   margin-bottom: 4px;
+
 }
 
 .contact-container > form {
   width: 630px;
-  background-color: #2db9ff;
+  /* background-color: #2db9ff; */
   padding-left: 15px;
+
 }
 
 .contact-container > form > input, textarea { 
   border: none;
-  background-color: #66CCFF;
+  background-color: rgba(102, 204, 255, 0.5);
   margin-top: 8px;
   color: white;
   padding: 7px 5px;
   font-family:'Helvetica Neue', sans-serif;
   font-size: 14px;
+
 }
 
 .contact-container > form > input::placeholder, textarea::placeholder {
-  color: #c3e5f7;
+  /* color: #c3e5f7; */
+  color: #27b0fa;
   font-weight: 400;
   font-size: 12px;
   font-family:'Helvetica Neue', sans-serif;
@@ -128,4 +134,14 @@
 #message-error {
   margin-top: 2px;
   margin-bottom: 4px;
+}
+
+.footer-logo > img {
+  position: relative;
+  width: 376x;
+  height: 243px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 15em;
+  z-index: -1;
 }

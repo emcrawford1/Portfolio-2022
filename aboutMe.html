@@ -45,29 +45,45 @@
       <div class="text3">I like to challenge myself with <div class="difficult">difficult </div>projects</div>
       <div class="text4">and have experience with <div class="technologies">HTML, CSS, Javascript, jQuery, React, SQL, </div> and <div class="technologies"> Node.js.</div></div>
       <div class="text5">I want a career where I can grow as a <div class="developer">WEB DEVELOPER</div> and pursue meaningful interests within technology.</div>
-      <div class="text6">I created this website from scratch using <div class="technologies">HTML, CSS, </div> and <div class="technologies">Javascript.</div> The carousel logic was all custom written.</div>
+      <div class="text6">I created this website from scratch using <div class="technologies">HTML, CSS, </div> and <div class="technologies">Javascript.</div> The carousel logic was all written without the aid of external libraries.</div>
       <div class="text7">If you're interested in discussing anything coding or web related, please <div class="reach-out">reach out!</div></div>
     </div>
     <div id="blue-bar"></div>
  
     <div id="main-container" class="main-container">
-      <img
-        src="./assets/images/Left_Arrow.png"
-        alt="Left Arrow"
-        style="width: 50px; height: 50px"
-        id="left-arrow"
-      />
-      <img
-        src="./assets/images/Right_Arrow.png"
-        alt="Left Arrow"
-        style="width: 50px; height: 50px"
-        id="right-arrow"
-      />
-      <div id="blur-left"></div>
-      <div id="blur-right"></div>
-      <div id="img-container" class="image-container"></div>
+      <div id="carousel">
+        <div id="carousel-items">
+          <div id="img-container">
+            <div class="spoke-1 spoke">
+              <div class="block block-1">
+                <img class="carousel-image" src="./assets/images/Trivia_Logo.jpeg" alt="">
+              </div>
+            </div>
+            <div class="spoke-2 spoke">
+              <div class="block block-2 focus-slide">
+                <img class="carousel-image"  src="./assets/images/planit.jpg" alt="">
+              </div>
+            </div>
+            <div class="spoke-3 spoke">
+              <div class="block block-3">
+                <img class="carousel-image" src="./assets/images/Flight_Logo.jpeg" alt="">
+              </div>
+            </div>
+            <div class="spoke-4 spoke">
+              <div class="block block-4">
+                <img class="carousel-image" src="./assets/images/Burger_Logo.jpeg" alt="">
+              </div>
+            </div>
+          </div>
+          <div id="indicator-container"></div>
+        </div>
+        <div class="arrows">
+          <img id="left-arrow" class="nav-arrow" src="./assets/images/Left_Arrow.png" alt="">
+          <img id="right-arrow" class="nav-arrow" src="./assets/images/Right_Arrow.png" alt="">
+        </div>
+      </div>
     </div>
-    <div class="projects-bar"> <div class="projects-title">PROJECTS</div></div>
+    <div class="projects-bar"> <div class="projects-title">Projects</div></div>
     <div class="contact-container">
       <div class="contact-me">CONTACT ME</div>
       <form action="#" spellcheck="false">
@@ -91,6 +107,9 @@
         <button type="button" class="clear-btn" id="clear-btn">Clear Form</button>
         <button type="button" class="submit-btn" id="submit-btn">Send</button>
       </form>
+    </div>
+    <div class="footer-logo">
+      <img src="./assets/images/Footer_Logo.png" alt="">
     </div>
     <script src="./assets/js/projects.js"></script>
     <script src="./assets/js/contact.js"></script>
