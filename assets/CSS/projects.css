@@ -427,7 +427,7 @@
 }
 
 .portfolio-card:hover .card-inner {
-  transform: rotateY(180deg)
+  transform: rotateY(180deg);
 }
 
 .card-transition {
