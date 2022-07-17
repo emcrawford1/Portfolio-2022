@@ -4,8 +4,6 @@
   --form-color: #2db9ff;
 }
 
-
-
 /* Form styling */
 .contact-container {
   width: 650px;
@@ -20,48 +18,47 @@
   margin-bottom: 55em;
   /* box-shadow: 5px 5px 10px #c3e5f7; */
   border-radius: 2px;
-
 }
 
 .contact-me {
-  font-family:'Helvetica Neue', sans-serif;
+  font-family: "Helvetica Neue", sans-serif;
   font-size: 22px;
   /* color: whitesmoke; */
-  color:rgb(65, 190, 252);
+  color: rgb(65, 190, 252);
   font-weight: 400;
   text-align: center;
   margin-bottom: 4px;
-
 }
 
 .contact-container > form {
   width: 630px;
   /* background-color: #2db9ff; */
   padding-left: 15px;
-
 }
 
-.contact-container > form > input, textarea { 
+.contact-container > form > input,
+textarea {
   border: none;
   background-color: rgba(102, 204, 255, 0.5);
   margin-top: 8px;
   color: white;
   padding: 7px 5px;
-  font-family:'Helvetica Neue', sans-serif;
+  font-family: "Helvetica Neue", sans-serif;
   font-size: 14px;
-
 }
 
-.contact-container > form > input::placeholder, textarea::placeholder {
+.contact-container > form > input::placeholder,
+textarea::placeholder {
   /* color: #c3e5f7; */
   color: #27b0fa;
   font-weight: 400;
   font-size: 12px;
-  font-family:'Helvetica Neue', sans-serif;
+  font-family: "Helvetica Neue", sans-serif;
   letter-spacing: 0.03em;
 }
 
-.contact-container > form > input:focus, textarea:focus {
+.contact-container > form > input:focus,
+textarea:focus {
   outline: none;
 }
 
@@ -70,21 +67,25 @@
   width: var(--input-width);
 }
 
-#name, #email {
+#name,
+#email {
   margin-right: 5px;
 }
 
-#name, #company, #email, #phone {
+#name,
+#company,
+#email,
+#phone {
   width: var(--input-half-width);
 }
 
 .submit-btn {
   border: none;
-  background-color: #228BBF;
+  background-color: #228bbf;
   color: whitesmoke;
   width: 308px;
   padding: 5px;
-  font-family:'Helvetica Neue', sans-serif;
+  font-family: "Helvetica Neue", sans-serif;
   font-size: 15px;
   font-weight: 500;
   margin-top: 7px;
@@ -93,20 +94,20 @@
 
 .submit-btn:hover {
   cursor: pointer;
-  background-color: #1E7AA7;
+  background-color: #1e7aa7;
 }
 
 .submit-btn:active {
-  background-color: #1A688F;
+  background-color: #1a688f;
 }
 
 .clear-btn {
   border: none;
-  background-color: #DF2746;
+  background-color: #df2746;
   color: whitesmoke;
   width: 304px;
   padding: 5px;
-  font-family:'Helvetica Neue', sans-serif;
+  font-family: "Helvetica Neue", sans-serif;
   font-size: 15px;
   font-weight: 500;
   margin-top: 7px;
@@ -116,18 +117,18 @@
 
 .clear-btn:hover {
   cursor: pointer;
-  background-color: #BF223C;
+  background-color: #bf223c;
 }
 
 .clear-btn:active {
-  background-color: #9F1C32;
+  background-color: #9f1c32;
 }
 
 .error-message {
   font-size: 12px;
   margin-top: 5px;
   margin-bottom: 7px;
-  color: #FF2D50;
+  color: #ff2d50;
   display: none;
 }
 
@@ -144,4 +145,30 @@
   transform: translateX(-50%);
   bottom: 15em;
   z-index: -1;
+}
+
+#response-success {
+  display: none; 
+  color: green;
+  position: relative;
+  bottom: 10em;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  width: 15em;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#response-err {
+  display: none;
+  color: red;
+  position: relative;
+  bottom: 10em;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  width: 25em;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
 }
