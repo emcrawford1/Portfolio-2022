@@ -4,6 +4,29 @@
   --form-color: #2db9ff;
 }
 
+.connect-bar {
+  position: absolute;
+  top: 100em;
+  right: 0em;
+  background-color: var(--form-color);
+  width: 17em;
+  height: 4em;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.connect-title {
+  position: relative;
+  height: 100%;
+  left: 0.5em;
+  top: 25%;
+  font-size: 30px;
+  color: white;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+}
+
+
 /* Form styling */
 .contact-container {
   width: 650px;
